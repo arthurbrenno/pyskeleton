@@ -1,0 +1,13 @@
+version: '3'
+services:
+  myproject:
+    build:
+      context: .
+    ports:
+      - 8967:8967
+    volumes:
+      - /app/.venv
+    restart: unless-stopped
+    environment:
+      - .env
+      - AM_I_HAPPY=yes

@@ -1,0 +1,16 @@
+server:
+  app: "app.main:app"
+  port: 8967
+  host: "0.0.0.0"
+  reload: false
+  workers: 1
+
+  cors:
+    allowed: true
+    allow_credentials: false
+    allow_origins: ["*"]
+    allow_origin_regex: ".*"
+    allow_methods:
+      - GET
+    allow_headers: []
+    
