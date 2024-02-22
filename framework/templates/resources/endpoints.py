@@ -4,7 +4,7 @@ from typing import Any
 
 from fastapi import APIRouter, Depends, Request
 
-from app.core.controllers import Controller
+from app.base.controllers import Controller
 
 from .dependecies import get_controller
 from .models.requests import POSTRequest, PUTRequest

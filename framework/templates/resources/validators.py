@@ -1,23 +1,27 @@
 """Request | Resource validators for this resource"""
 
-from app.core.validators import ReqValidator
+from app.base.validators import RequestValidator
 
 
-class POSTValidator(ReqValidator):
+class POSTValidator(RequestValidator):
     """Validates a POST request for this resource"""
 
 
-class GETValidator(ReqValidator):
+class GETValidator(RequestValidator):
     """Validates a GET request for this resource"""
 
 
-class GETALLValidator(ReqValidator):
+class GETALLValidator(RequestValidator):
     """Validates a GET ALL request for this resource"""
 
 
-class OPTIONSValidator(ReqValidator):
+class PUTValidator(RequestValidator):
+    """Validates a PUT request for this resource"""
+
+
+class OPTIONSValidator(RequestValidator):
     """Validates a OPTIONS request for this resource"""
 
 
-class DELETEValidator(ReqValidator):
+class DELETEValidator(RequestValidator):
     """Validates a DELETE request for this resource"""

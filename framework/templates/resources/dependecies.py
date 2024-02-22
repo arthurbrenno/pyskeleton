@@ -1,7 +1,7 @@
 """Dependencies for this resource"""
 
-from app.core.controllers import Controller
-from app.core.validators import NullValidator
+from app.base.controllers import Controller
+from app.base.validators import NullValidator
 from app.typing import V
 
 # from .controllers import

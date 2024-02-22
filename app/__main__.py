@@ -1,4 +1,9 @@
-"""__main__"""
+"""Application entry point when run directly by module.
+
+This module initializes and runs the FastAPI application using Uvicorn as the ASGI server.
+It loads application settings from environment variables and applies these settings
+to configure the server, such as host, port, and number of workers.
+"""
 
 import uvicorn
 from dotenv import load_dotenv
@@ -6,10 +11,10 @@ from dotenv import load_dotenv
 from app.main import app
 from app.settings import Settings, settings
 
-settings: Settings = settings()
-load_dotenv()
+app_settings: Settings = settings()
 
-uvicorn.run(app,
-            host=settings.server.host,
-            port=settings.server.port,
-            workers=settings.server.workers)
+if __name__ == '__main__':
+    uvicorn.run(app,
+                host=app_settings.server.host,
+                port=app_settings.server.port,
+                workers=app_settings.server.workers)

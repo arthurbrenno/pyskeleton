@@ -1,11 +1,17 @@
-"""Controller (request intermediate) class for this resource."""
+"""Controller (request intermediary) for [Resource Name].
 
-from app.core.controllers import Controller
-from app.core.exceptions import NotImplementedException
-from app.core.requests import NullRequest, Req
-from app.core.services import S
-# from app.core.validations import
-from app.typing import ID
+This module defines the controller class for [Resource Name], handling incoming
+HTTP requests, executing the appropriate service layer logic, and returning
+the corresponding HTTP responses.
+"""
+
+from app.base.controllers import Controller
+from app.base.exceptions import NotImplementedException
+from app.base.requests import NullRequest, Req
+from app.base.services import S
+from .validators import POSTValidator, GETValidator, GETALLValidator, OPTIONSValidator, PUTValidator, DELETEValidator
+from app.base.validators import V
+from app.typing import I
 
 # from .exceptions import
 from .models.requests import POSTRequest, PUTRequest
@@ -21,31 +27,37 @@ class _Controller(Controller):
     """Controller for this resource."""
     async def post(self,
                    request_body: POSTRequest,
-                   request: Req = NullRequest) -> POSTResponse:
+                   request: Req = NullRequest,
+                   validator: V = POSTValidator) -> POSTResponse:
         raise NotImplementedException
 
     async def get(self,
-                  identifier: ID,
-                  request: Req = NullRequest) -> GETResponse:
+                  identifier: I,
+                  request: Req = NullRequest,
+                  validator: V = GETValidator) -> GETResponse:
         raise NotImplementedException
 
     async def get_all(self,
-                      request: Req = NullRequest) -> GETALLResponse:
+                      request: Req = NullRequest,
+                      validator: V = GETALLValidator) -> GETALLResponse:
         raise NotImplementedException
 
     async def put(self,
-                  identifier: ID,
+                  identifier: I,
                   request_body: PUTRequest,
-                  request: Req = NullRequest) -> PUTResponse:
+                  request: Req = NullRequest,
+                  validator: V = PUTValidator) -> PUTResponse:
         raise NotImplementedException
 
     async def delete(self,
-                     identifier: ID,
-                     request: Req = NullRequest) -> DELETEResponse:
+                     identifier: I,
+                     request: Req = NullRequest,
+                     validator: V = DELETEValidator) -> DELETEResponse:
         raise NotImplementedException
 
     async def options(self,
-                      request: Req = NullRequest) -> OPTIONSResponse:
+                      request: Req = NullRequest,
+                      validator: V = OPTIONSValidator) -> OPTIONSResponse:
         raise NotImplementedException
 
     async def health(self,

@@ -1,28 +1,35 @@
-"""Services (business rules || repository executors) of this resource"""
+"""Services (business rules or repository executors) for [Resource Name]."""
+
 from fastapi import Request
-
-# from app.core.repositories import AsyncRepository, Repository
-from app.core.services import Service
-
-# from app.typing import R
-
+from app.base.services import Service
 
 class HealthService(Service):
-    """Service that indicates the health of this resource"""
+    """Service that indicates the health of [Resource Name] resource.
 
-    request: Request
+    This service gathers and returns information about the request and client,
+    useful for health checks and monitoring the status of the resource.
+    """
 
     def __init__(self, request: Request) -> None:
+        """Initializes the service with the incoming HTTP request.
+
+        Args:
+            request (Request): The incoming HTTP request.
+        """
         self.request = request
 
     def execute(self) -> dict:
-        client = self.request.client
+        """Executes the service logic to collect health-related information.
+
+        Returns:
+            dict: A dictionary containing client, host, and user agent information.
+        """
+        client = self.request.client.host
         host = self.request.headers.get("host", "Unknown Host")
-        user_agent = self.request.headers.get("user-agent",
-                                              "Unknown User Agent")
+        user_agent = self.request.headers.get("user-agent", "Unknown User Agent")
 
         return {
-            "client": str(client),
+            "client_ip": client,
             "host": host,
             "user_agent": user_agent,
         }
