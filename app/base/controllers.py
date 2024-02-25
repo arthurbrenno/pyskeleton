@@ -4,7 +4,9 @@ from abc import ABC, abstractmethod
 
 from app.base.exceptions import NotImplementedException
 from app.typing import ID, M
+from typing import Type
 from fastapi import Request
+from app.base.validators import RequestValidator
 
 
 class Controller(ABC):
@@ -21,7 +23,8 @@ class Controller(ABC):
     @abstractmethod
     async def post(self,
                    request_body: M,
-                   request: Request) -> M:
+                   request: Request,
+                   validator_cls: Type[RequestValidator]) -> M:
         """Handles POST requests to create a new resource.
 
         Args:
@@ -65,7 +68,8 @@ class Controller(ABC):
     async def put(self,
                   identifier: ID,
                   request_body: M,
-                  request: Request) -> M:
+                  request: Request,
+                  validator_cls: Type[RequestValidator]) -> M:
         """Handles PUT requests to update a resource by its identifier.
 
         Args:

@@ -6,22 +6,25 @@ from fastapi import APIRouter, Depends, Request
 
 from app.base.controllers import Controller
 
-from .dependecies import get_controller
+from .dependecies import get_controller, get_post_validator, get_put_validator
 from .models.requests import POSTRequest, PUTRequest
 from .models.responses import (DELETEResponse, GETALLResponse, GETResponse,
                                HealthResponse, OPTIONSResponse, POSTResponse,
                                PUTResponse)
+from typing import Type
+from app.base.validators import RequestValidator, V
 
 router = APIRouter(prefix="/_")
 
 @router.post("/")
 async def create(request: Request,
                  body: POSTRequest,
-                 controller: Controller = Depends(get_controller)
-                 ) -> POSTResponse:
+                 controller: Controller = Depends(get_controller),
+                 validator_cls: Type[V] = Depends(get_post_validator)) -> POSTResponse:
     """Creates one entity of this resource"""
     return await controller.post(request_body=body,
-                                 request=request)
+                                 request=request,
+                                 validator_cls=validator_cls)
 
 
 @router.get("/health")
@@ -54,12 +57,13 @@ async def read_all(request: Request,
 async def put(identifier: str,
               body: PUTRequest,
               request: Request,
-              controller: Controller = Depends(get_controller)
-              ) -> PUTResponse:
+              controller: Controller = Depends(get_controller),
+              validator_cls: Type[V] = Depends(get_put_validator)) -> PUTResponse:
     """Updates an entity of this resource"""
     return await controller.put(identifier=identifier,
                                 request_body=body,
-                                request=request)
+                                request=request,
+                                validator_cls=validator_cls)
 
 
 @router.delete("/{identifier}")
