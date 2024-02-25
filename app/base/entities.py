@@ -6,8 +6,8 @@ from abc import ABC
 from dataclasses import dataclass
 from typing import Optional
 from datetime import datetime, timezone
-from app.base.vobjs import ID
-
+from app.base.vobjs import ID, NullID
+from app.typing import I
 @dataclass
 class Entity(ABC):
     """Abstract base class for all entities in the application.
@@ -19,7 +19,7 @@ class Entity(ABC):
         id (Optional[ID]): The unique identifier for the entity. None for new entities.
         created_at (Optional[datetime]): The timestamp of when the entity was created. None for new entities.
     """
-    id: Optional[ID] = None
+    id: I = NullID
     created_at: Optional[datetime] = None
 
     def mark_as_persisted(self, id: ID, created_at: Optional[datetime] = None):
@@ -43,9 +43,8 @@ class NullEntity(Entity):
     Represents a null or "empty" state for an entity, useful for avoiding null checks
     and providing a default, non-operative entity object.
     """
-    id: ID = ID(val=0)
-
-
+    id: ID = NullID
+    created_at: datetime = None
 
 
 E = TypeVar('E', bound=Entity)

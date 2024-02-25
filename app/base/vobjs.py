@@ -23,3 +23,18 @@ class ID:
         val (str | int): The value of the identifier, which can be a string or an integer.
     """
     val: str | int
+
+
+@dataclass(frozen=True)
+class NullID(ID):
+    """A value object representing a null identifier within the application.
+
+    The ID class is used across the domain as a way to uniquely identify entities
+    or other objects without embedding identity semantics within the value object itself.
+    It encapsulates either a string or an integer value, allowing for flexibility in
+    identifier schemes (e.g., UUIDs, numeric IDs, etc.).
+
+    Attributes:
+        val (str | int): The value of the identifier, which can be a string or an integer.
+    """
+    val: str | int

@@ -1,11 +1,14 @@
 """Concrete repository implementations for [Resource Name]."""
 
 from typing import List, Optional
-from app.base.repositories import AsyncRepository, Repository
+
 from app.base.entities import E
-from app.typing import I
 from app.base.exceptions import NotImplementedException
-# from .abstract import 
+from app.base.repositories import AsyncRepository, Repository
+# from .abstract import
+from app.di import global_injector
+from app.typing import I
+
 
 class _Repository(...):
     """Concrete implementation of the Repository for [Resource Name]."""

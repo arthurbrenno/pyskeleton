@@ -1,18 +1,17 @@
 """Endpoints related to this resource"""
 
-from typing import Any
+from typing import Any, Type
 
 from fastapi import APIRouter, Depends, Request
 
 from app.base.controllers import Controller
+from app.base.validators import RequestValidator, V
 
 from .dependecies import get_controller, get_post_validator, get_put_validator
 from .models.requests import POSTRequest, PUTRequest
 from .models.responses import (DELETEResponse, GETALLResponse, GETResponse,
                                HealthResponse, OPTIONSResponse, POSTResponse,
                                PUTResponse)
-from typing import Type
-from app.base.validators import RequestValidator, V
 
 router = APIRouter(prefix="/_")
 

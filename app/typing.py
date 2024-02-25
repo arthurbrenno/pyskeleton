@@ -1,7 +1,7 @@
 """Common types for the application"""
 
 from typing import TypeVar
-from app.base.vobjs import ID
+from app.base.vobjs import ID, NullID
 from pydantic import BaseModel
 
 

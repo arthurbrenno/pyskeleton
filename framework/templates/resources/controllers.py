@@ -5,23 +5,22 @@ HTTP requests, executing the appropriate service layer logic, and returning
 the corresponding HTTP responses.
 """
 
+from typing import Type
+
+from fastapi import Request
+
 from app.base.controllers import Controller
 from app.base.exceptions import NotImplementedException
 from app.base.services import S
-from fastapi import Request
-from .validators import POSTValidator, GETValidator, GETALLValidator, OPTIONSValidator, PUTValidator, DELETEValidator
-from app.base.validators import V
+from app.base.validators import RequestValidator
 from app.typing import I
-from typing import Type
 
-# from .exceptions import
 from .models.requests import POSTRequest, PUTRequest
 from .models.responses import (DELETEResponse, GETALLResponse, GETResponse,
                                HealthResponse, OPTIONSResponse, POSTResponse,
                                PUTResponse)
-from app.base.validators import RequestValidator
-# from .validators import
 from .services import HealthService
+from .validators import POSTValidator, PUTValidator
 
 
 class _Controller(Controller):
@@ -50,14 +49,17 @@ class _Controller(Controller):
         validator_cls(request_body).execute()
         raise NotImplementedException
 
+
     async def delete(self,
                      identifier: I,
                      request: Request) -> DELETEResponse:
         raise NotImplementedException
 
+
     async def options(self,
                       request: Request) -> OPTIONSResponse:
         raise NotImplementedException
+
 
     async def health(self,
                      request: Request) -> HealthResponse:

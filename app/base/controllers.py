@@ -6,7 +6,7 @@ from app.base.exceptions import NotImplementedException
 from app.typing import ID, M
 from typing import Type
 from fastapi import Request
-from app.base.validators import RequestValidator
+from app.base.validators import V
 
 
 class Controller(ABC):
@@ -24,7 +24,7 @@ class Controller(ABC):
     async def post(self,
                    request_body: M,
                    request: Request,
-                   validator_cls: Type[RequestValidator]) -> M:
+                   validator_cls: Type[V]) -> M:
         """Handles POST requests to create a new resource.
 
         Args:
@@ -69,7 +69,7 @@ class Controller(ABC):
                   identifier: ID,
                   request_body: M,
                   request: Request,
-                  validator_cls: Type[RequestValidator]) -> M:
+                  validator_cls: Type[V]) -> M:
         """Handles PUT requests to update a resource by its identifier.
 
         Args:
