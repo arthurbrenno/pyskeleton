@@ -10,8 +10,9 @@ from abc import ABC, abstractmethod
 from typing import Any, Generic, List, TypeVar, Union
 
 from app.base.entities import E
-from app.typing import I
 from app.base.exceptions import NotImplementedException
+from app.typing import I
+
 
 class AsyncRepository(ABC, Generic[E]):
     """Abstract base class for asynchronous repositories.

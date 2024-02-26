@@ -13,6 +13,7 @@ independently developed, tested, and reused across the application.
 import abc
 from typing import Any, Optional, TypeVar
 
+
 class Service(abc.ABC):
     """Abstract base class for synchronous services within the application.
 

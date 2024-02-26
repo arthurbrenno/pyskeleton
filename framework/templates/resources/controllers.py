@@ -14,6 +14,7 @@ from app.base.exceptions import NotImplementedException
 from app.base.services import S
 from app.base.validators import RequestValidator
 from app.typing import I
+from fastapi import UploadFile
 
 from .models.requests import POSTRequest, PUTRequest
 from .models.responses import (DELETEResponse, GETALLResponse, GETResponse,
@@ -26,7 +27,7 @@ from .validators import POSTValidator, PUTValidator
 class _Controller(Controller):
     """Controller for this resource."""
     async def post(self,
-                   request_body: POSTRequest,
+                   request_body: POSTRequest | UploadFile,
                    request: Request,
                    validator_cls: Type[RequestValidator] = POSTValidator) -> POSTResponse:
         validator_cls(request_body).execute()

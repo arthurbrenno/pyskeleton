@@ -1,7 +1,9 @@
 """Module for easily accessing configuration parameters from 'config.yaml'."""
 
 from pathlib import Path
+
 import yaml
+
 
 class ConfigDict(dict):
     """A dictionary subclass that allows attribute-style access to its items."""

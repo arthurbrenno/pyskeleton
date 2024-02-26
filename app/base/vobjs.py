@@ -10,6 +10,7 @@ identifiers that do not by themselves confer a distinct identity.
 
 from dataclasses import dataclass
 
+
 @dataclass(frozen=True)
 class ID:
     """A value object representing an identifier within the application.

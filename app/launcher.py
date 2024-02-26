@@ -11,6 +11,7 @@ from injector import Injector
 
 from app.settings import Settings
 
+
 def build_app(injector: Injector) -> FastAPI:
     """Builds and returns a FastAPI application configured with dependency injection.
 

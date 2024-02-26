@@ -7,7 +7,9 @@ to their implementations, promoting loose coupling and modularity.
 """
 
 from typing import List, Tuple
+
 from injector import Injector
+
 from app.settings import Settings
 
 interfaces_to_implementations: List[Tuple] = [

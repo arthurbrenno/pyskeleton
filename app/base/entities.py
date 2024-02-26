@@ -1,13 +1,14 @@
 """Base classes for all entities in the application."""
 
-from typing import TypeVar
-
 from abc import ABC
 from dataclasses import dataclass
-from typing import Optional
 from datetime import datetime, timezone
+from typing import Optional, TypeVar
+
 from app.base.vobjs import ID, NullID
 from app.typing import I
+
+
 @dataclass
 class Entity(ABC):
     """Abstract base class for all entities in the application.

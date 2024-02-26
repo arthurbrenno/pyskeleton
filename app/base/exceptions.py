@@ -6,7 +6,9 @@ allowing for consistent error handling and response formatting throughout the ap
 """
 
 from typing import Any, Dict
+
 from fastapi import HTTPException, status
+
 
 class InternalServerError(HTTPException):
     """Exception for internal server errors (500).

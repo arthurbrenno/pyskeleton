@@ -1,12 +1,13 @@
 """Basic interface (contract) for all controllers in the application"""
 
 from abc import ABC, abstractmethod
+from typing import Type
+
+from fastapi import Request, UploadFile
 
 from app.base.exceptions import NotImplementedException
-from app.typing import ID, M
-from typing import Type
-from fastapi import Request
 from app.base.validators import V
+from app.typing import ID, M
 
 
 class Controller(ABC):
@@ -22,7 +23,7 @@ class Controller(ABC):
 
     @abstractmethod
     async def post(self,
-                   request_body: M,
+                   request_body: M | UploadFile,
                    request: Request,
                    validator_cls: Type[V]) -> M:
         """Handles POST requests to create a new resource.
