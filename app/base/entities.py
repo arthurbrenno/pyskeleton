@@ -5,8 +5,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import Optional, TypeVar
 
-from app.base.vobjs import ID, NullID
-from app.typing import I
+from app.base.value_objects import ID, NullID
 
 
 @dataclass
@@ -20,7 +19,7 @@ class Entity(ABC):
         id (Optional[ID]): The unique identifier for the entity. None for new entities.
         created_at (Optional[datetime]): The timestamp of when the entity was created. None for new entities.
     """
-    id: I = NullID
+    id: ID = NullID
     created_at: Optional[datetime] = None
 
     def mark_as_persisted(self, id: ID, created_at: Optional[datetime] = None):

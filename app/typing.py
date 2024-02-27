@@ -4,7 +4,7 @@ from typing import TypeVar
 
 from pydantic import BaseModel
 
-from app.base.vobjs import ID, NullID
+from app.base.value_objects import ID, NullID
 
 T = TypeVar("T")
 K = TypeVar("K")
