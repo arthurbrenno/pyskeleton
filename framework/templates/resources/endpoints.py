@@ -1,13 +1,15 @@
 """Endpoints related to this resource"""
 
-from typing import Any, Type
+from typing import Type
 
 from fastapi import APIRouter, Depends, Request
 
 from app.base.controllers import Controller
-from app.base.validators import RequestValidator, V
+from app.base.validators import V
+from app.base.value_objects import ID
 
-from .dependecies import get_controller, get_post_validator, get_put_validator
+from .dependecies import (get_controller, get_post_validator_cls,
+                          get_put_validator_cls)
 from .models.requests import POSTRequest, PUTRequest
 from .models.responses import (DELETEResponse, GETALLResponse, GETResponse,
                                HealthResponse, OPTIONSResponse, POSTResponse,
@@ -19,7 +21,7 @@ router = APIRouter(prefix="/_")
 async def create(request: Request,
                  body: POSTRequest,
                  controller: Controller = Depends(get_controller),
-                 validator_cls: Type[V] = Depends(get_post_validator)) -> POSTResponse:
+                 validator_cls: Type[V] = Depends(get_post_validator_cls)) -> POSTResponse:
     """Creates one entity of this resource"""
     return await controller.post(request_body=body,
                                  request=request,
@@ -40,7 +42,7 @@ async def read(identifier: str,
                controller: Controller = Depends(get_controller)
                ) -> GETResponse:
     """Gets one entity related to this resource"""
-    return await controller.get(identifier=identifier,
+    return await controller.get(identifier=ID(identifier),
                                 request=request)
 
 
@@ -57,9 +59,9 @@ async def put(identifier: str,
               body: PUTRequest,
               request: Request,
               controller: Controller = Depends(get_controller),
-              validator_cls: Type[V] = Depends(get_put_validator)) -> PUTResponse:
+              validator_cls: Type[V] = Depends(get_put_validator_cls)) -> PUTResponse:
     """Updates an entity of this resource"""
-    return await controller.put(identifier=identifier,
+    return await controller.put(identifier=ID(identifier),
                                 request_body=body,
                                 request=request,
                                 validator_cls=validator_cls)
@@ -71,7 +73,7 @@ async def delete(identifier: str,
                  controller: Controller = Depends(get_controller)
                  ) -> DELETEResponse:
     """Deletes one entity of this resource"""
-    return await controller.delete(identifier=identifier,
+    return await controller.delete(identifier=ID(identifier),
                                    request=request)
 
 

@@ -37,6 +37,7 @@ class Controller(ABC):
         """
         raise NotImplementedException
 
+
     @abstractmethod
     async def get(self,
                   identifier: ID,
@@ -52,6 +53,7 @@ class Controller(ABC):
         """
         raise NotImplementedException
 
+
     @abstractmethod
     async def get_all(self,
                       request: Request) -> M:
@@ -64,6 +66,7 @@ class Controller(ABC):
             NotImplementedException: If the method is not implemented by the derived class.
         """
         raise NotImplementedException
+
 
     @abstractmethod
     async def put(self,
@@ -83,6 +86,7 @@ class Controller(ABC):
         """
         raise NotImplementedException
 
+
     @abstractmethod
     async def delete(self,
                      identifier: ID,
@@ -98,10 +102,12 @@ class Controller(ABC):
         """
         raise NotImplementedException
 
+
     @abstractmethod
     async def options(self,
                       request: Request) -> M:
-        """Handles OPTIONS requests, typically used to describe the communication options for the target resource.
+        """Handles OPTIONS requests, typically used to
+        describe the communication options for the target resource.
 
         Args:
             request (Req): Additional context or parameters for the request.
@@ -110,6 +116,7 @@ class Controller(ABC):
             NotImplementedException: If the method is not implemented by the derived class.
         """
         raise NotImplementedException
+
 
     @abstractmethod
     async def health(self,

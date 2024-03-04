@@ -22,6 +22,7 @@ class InternalServerError(HTTPException):
                  headers: Dict[str, str] | None = None) -> None:
         super().__init__(status_code, detail, headers)
 
+
 class GenericException(HTTPException):
     """A generic exception for HTTP errors.
 
@@ -33,6 +34,7 @@ class GenericException(HTTPException):
                  detail: Any,
                  headers: Dict[str, str] | None = None) -> None:
         super().__init__(status_code, detail, headers)
+
 
 class NotImplementedException(HTTPException):
     """Exception for not implemented features (501).

@@ -16,25 +16,28 @@ class Entity(ABC):
     accommodating new entities that have not yet been persisted.
 
     Attributes:
-        id (Optional[ID]): The unique identifier for the entity. None for new entities.
-        created_at (Optional[datetime]): The timestamp of when the entity was created. None for new entities.
+        _id (Optional[ID]): The unique identifier for the entity. None for new entities.
+        created_at (Optional[datetime]): The timestamp of when the
+        entity was created. None for new entities.
     """
-    id: ID = NullID
+    _id: ID = NullID
     created_at: Optional[datetime] = None
 
-    def mark_as_persisted(self, id: ID, created_at: Optional[datetime] = None):
+
+    def mark_as_persisted(self, _id: ID, created_at: Optional[datetime] = None):
         """Updates the entity's identifier and creation timestamp upon persistence.
 
         Args:
-            id (ID): The unique identifier assigned upon persistence.
+            _id (ID): The unique identifier assigned upon persistence.
             created_at (Optional[datetime]): The creation timestamp, defaults to
             the current UTC time if not provided.
         """
-        self.id = id
+        self._id = _id
         if created_at is None:
             self.created_at = datetime.now(timezone.utc)
         else:
             self.created_at = created_at
+
 
 @dataclass
 class NullEntity(Entity):

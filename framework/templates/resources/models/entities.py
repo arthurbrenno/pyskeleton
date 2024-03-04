@@ -7,11 +7,12 @@ that map closely to database records.
 """
 
 from dataclasses import dataclass
-from typing import Optional
+
+from app.base.entities import Entity, NullEntity
+
 # Uncomment the following line if you're using Pydantic for validation
 # from pydantic.dataclasses import dataclass
 
-from app.base.entities import Entity, NullEntity
 
 @dataclass
 class _(Entity):
@@ -22,7 +23,7 @@ class _(Entity):
     Attributes:
         ...
     """
-    
+
 
 @dataclass
 class _(NullEntity):

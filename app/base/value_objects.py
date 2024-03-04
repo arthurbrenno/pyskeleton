@@ -38,4 +38,4 @@ class NullID(ID):
     Attributes:
         val (str | int): The value of the identifier, which can be a string or an integer.
     """
-    val: str | int
+    val: str | int = -1

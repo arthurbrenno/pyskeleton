@@ -1,9 +1,10 @@
 """Dependencies for this resource"""
 
+from typing import Type
+
 from app.base.controllers import Controller
 from app.base.validators import NullValidator
 from app.typing import V
-from typing import Type
 
 # from .controllers import
 

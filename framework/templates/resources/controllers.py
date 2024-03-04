@@ -7,14 +7,12 @@ the corresponding HTTP responses.
 
 from typing import Type
 
-from fastapi import Request
+from fastapi import Request, UploadFile
 
 from app.base.controllers import Controller
 from app.base.exceptions import NotImplementedException
 from app.base.services import S
-from app.base.validators import RequestValidator
 from app.typing import I
-from fastapi import UploadFile
 
 from .models.requests import POSTRequest, PUTRequest
 from .models.responses import (DELETEResponse, GETALLResponse, GETResponse,
@@ -29,7 +27,7 @@ class _Controller(Controller):
     async def post(self,
                    request_body: POSTRequest | UploadFile,
                    request: Request,
-                   validator_cls: Type[RequestValidator] = POSTValidator) -> POSTResponse:
+                   validator_cls: POSTValidator = POSTValidator) -> POSTResponse:
         validator_cls(request_body).execute()
         raise NotImplementedException
 
@@ -46,7 +44,7 @@ class _Controller(Controller):
                   identifier: I,
                   request_body: PUTRequest,
                   request: Request,
-                  validator_cls: Type[RequestValidator] = PUTValidator) -> PUTResponse:
+                  validator_cls: PUTRequest = PUTValidator) -> PUTResponse:
         validator_cls(request_body).execute()
         raise NotImplementedException
 

@@ -4,9 +4,7 @@ from typing import List, Optional
 
 from app.base.entities import E
 from app.base.exceptions import NotImplementedException
-from app.base.repositories import AsyncRepository, Repository
 # from .abstract import
-from app.di import global_injector
 from app.typing import I
 
 

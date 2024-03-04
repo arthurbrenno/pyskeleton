@@ -6,7 +6,6 @@ to configure the server, such as host, port, and number of workers.
 """
 
 import uvicorn
-from dotenv import load_dotenv
 
 from app.main import app
 from app.settings import Settings, settings

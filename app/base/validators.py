@@ -6,11 +6,12 @@ requests against defined schemas or rules before processing them further in the 
 """
 
 from abc import ABC, abstractmethod
-from typing import Optional, TypeVar
+from typing import Optional, TypeVar, Union
 
 from pydantic import BaseModel
 
 from app.base.exceptions import NotImplementedException
+from app.base.repositories import AsyncRepository, Repository, NullRepository
 from app.base.services import Service
 
 
@@ -25,14 +26,19 @@ class RequestValidator(Service, ABC):
         request (BaseModel): The request object to validate, defined using Pydantic models
                              for structured data validation.
     """
+    request: BaseModel
+    repository: Union[Repository, AsyncRepository]
 
-    def __init__(self, request: BaseModel) -> None:
+    def __init__(self,
+                 request: BaseModel,
+                 repository: Union[Repository, AsyncRepository] = NullRepository) -> None:
         """Initializes the request validator with a request object.
 
         Args:
             request (BaseModel): The request object to be validated.
         """
         self.request = request
+        self.repository = repository
 
     @abstractmethod
     def execute(self) -> None:

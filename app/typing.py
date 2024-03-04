@@ -10,6 +10,6 @@ T = TypeVar("T")
 K = TypeVar("K")
 V = TypeVar("V")
 M = TypeVar("M", bound=BaseModel)
-I = TypeVar("I", bound=ID)
+I = TypeVar("I", bound=ID | NullID)
 
 """Generic type variables for use in the application."""
