@@ -13,7 +13,7 @@ from app.settings import Settings, settings
 app_settings: Settings = settings()
 
 if __name__ == '__main__':
-    uvicorn.run(app,
+    uvicorn.run("app.main:app",
                 host=app_settings.server.host,
                 port=app_settings.server.port,
                 workers=app_settings.server.workers)
